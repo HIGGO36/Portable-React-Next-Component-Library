@@ -1,20 +1,55 @@
 {
   "private": true,
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "type-check": "tsc"
-  },
+
+"scripts": {
+  "dev": "next",
+  "build": "next build && node scripts/create-test-folder.js",
+  "start": "next start",
+  "type-check": "tsc",
+  "test": "jest",
+  "lint": "eslint ."
+},
+
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@heroicons/react": "^1.0.6",
+    "@material-ui/core": "4.12.4",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.1",
+    "@mui/styles": "^5.13.1",
+    "autoprefixer": "^10.4.14",
+    "lottie-react": "^2.4.0",
+    "lottie-react-web": "^2.2.2",
     "next": "latest",
+    "next-routes": "^1.4.2",
+    "postcss": "^8.4.23",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-card-flip": "^1.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-lottie": "^1.2.3",
+    "react-spring": "^9.7.1",
+    "sass": "^1.62.1",
+    "tailwindcss": "^3.3.2",
+    "terser": "^5.17.6",
+    "three": "^0.152.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
-    "@types/react": "^17.0.2",
+    "@types/prop-types": "^15.7.5",
+    "@types/react": "^17.0.59",
     "@types/react-dom": "^17.0.1",
+    "@types/three": "^0.152.0",
+    "babel-preset-minify": "^0.5.2",
+    "eslint": "^8.3.0",
+    "eslint-config-next": "^12.0.10",
+    "jest": "^27.5.1",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^8.3.2",
+    "prettier": "^2.4.1",
     "typescript": "^4.8.3"
   }
 }

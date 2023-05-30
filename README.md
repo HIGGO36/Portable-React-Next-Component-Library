@@ -1,47 +1,139 @@
-# TypeScript Next.js example
+# Interoperable Web Components with Next.js & MUI
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+This project demonstrates how to create and use React Next.js components, particularly when integrated with Material UI (MUI), as custom Web Components. This provides enhanced portability across various JavaScript frameworks. The project provides a comprehensive set of examples, showcasing best practices for creating and using these universal components.
 
-## Deploy your own
+The main goal is to offer a robust starting point for developers looking to leverage the power of React in diverse environments. It also serves as a resource for uniquely styled free-to-use web components designed by myself.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript)
+## Installation
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+To install the project, you will need to have Node.js and npm installed on your machine. Once these prerequisites are met, follow the steps below:
 
-## How to use it?
+1. Clone the repository: `git clone <repository-url>`
+2. Move into the project directory: `cd <project-directory>`
+3. Install the dependencies: `npm install`
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Usage
 
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-```
+You can run the project in development mode with `npm run dev`. This will start the development server on `http://localhost:3000`.
 
-```bash
-yarn create next-app --example with-typescript with-typescript-app
-```
+To build the project for production, use `npm run build`.
 
-```bash
-pnpm create next-app --example with-typescript with-typescript-app
-```
+## Examples
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### PremiumTemplate
 
-## Notes
+The `PremiumTemplate` component represents a premium template layout. It includes a header, various navigation sections, a main content body, an accordion section, and an ad case.
+ 
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
+        import React from 'react';
+        import { Typography, Box } from '@mui/material';
 
-```
-npm install --save-dev typescript
-```
+        interface PremiumTemplateProps {
+        title?: string;
+        customMetaTags?: React.ReactElement[];
+        bodyClassName?: string;
+        component: React.ReactNode;
+        }
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+        const PremiumTemplate: React.FC<PremiumTemplateProps> = ({
+        title,
+        customMetaTags,
+        bodyClassName,
+        component
+        }) => {
+        return (
+        <>
+        <header>
+        <!-- GlobalHeader code here -->
+        </header>
 
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
+        <div className="content">
+        <div className="body-wrapper">
+        <Box className={bodyClassName}>
+        {component}
 
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
+        <!-- GlobalAccordion code here -->
+        <!-- GlobalAdCase code here -->
+        </Box>
+        </div>
+        </div>
 
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
+        <footer>
+        <!-- GlobalFooter code here -->
+        </footer>
+        </>
+        );
+        };
 
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+        export default PremiumTemplate;
+
+
+
+### PremiumTemplateWrapper
+
+  The PremiumTemplateWrapper component is a wrapper that simplifies the usage of the PremiumTemplate. It takes title, customMetaTags, bodyClassName, and component as props.
+
+        import React from 'react';
+        import PremiumTemplate from '../templates/PremiumTemplate';
+
+        interface PremiumTemplateWrapperProps {
+        title: string;
+        customMetaTags?: React.ReactElement[];
+        bodyClassName?: string;
+        component: React.ReactNode;
+        }
+
+        const PremiumTemplateWrapper: React.FC<PremiumTemplateWrapperProps> = ({
+        title,
+        customMetaTags,
+        bodyClassName,
+        component,
+        }) => {
+        return (
+        <PremiumTemplate
+        title={title}
+        customMetaTags={customMetaTags}
+        bodyClassName={bodyClassName}
+        component={component}
+        />
+        );
+        };
+
+        export default PremiumTemplateWrapper;
+
+## To use the PremiumTemplateWrapper, import it and use it as follows:
+
+
+        import React from 'react';
+        import PremiumTemplateWrapper from '../wrappers/PremiumTemplateWrapper';
+
+        const MyComponent: React.FC = () => {
+
+        // Your component logic here
+
+        return (
+        <PremiumTemplateWrapper
+        title="My Premium Template"
+        customMetaTags={[<meta key="description" name="description" content="My custom meta description" />]}
+        bodyClassName="my-custom-body-class"
+        component={<div>My component
+        return (
+        <PremiumTemplateWrapper
+        title="My Premium Template"
+        customMetaTags={[<meta key="description" name="description" content="My custom meta description" />]}
+        bodyClassName="my-custom-body-class"
+        component={<div>My component content</div>}
+        />
+        );
+        };
+
+        export default MyComponent;
+
+
+   In the above example, the PremiumTemplateWrapper is used to wrap your component, providing the necessary props for the PremiumTemplate. Customize the props according to your needs.
+
+# Contributing
+As this project is maintained solely by myself, it is currently not open to contributions. However, feel free to explore the codebase and use it as a reference for your own projects!
+
+# License
+This project is open source and available under the MIT License.

@@ -1,0 +1,27 @@
+.searchContainer {
+    max-width: 100%;
+    border: 2px solid #444;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+
+  text-align-last: left; /* Align cursor to the far left */
+  caret-color: black; /* Set the color of the cursor */
+  text-indent: 0; /* Reset any text indentation */
+    text-align: left;
+
+
+}

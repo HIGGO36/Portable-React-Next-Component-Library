@@ -1,0 +1,107 @@
+// InformationBox.module.scss
+
+.informationBox {
+    max-width: 980px;
+    min-width: 380px;
+    width: 90%;
+    height: 100%;
+    background-color: #6E6E6C;
+    border: 2.5px solid #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 5% auto;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.informationBox:hover {
+    transform: translateZ(10px);
+}
+
+.tabContainer {
+position: absolute;
+    display: grid;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    z-index: 9999;
+    top: 1%;
+    left: -1.5%;
+}
+
+.tab {
+color: #000;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    background-color: #d9d9d9;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); // Initial 3D effect
+    position: relative;
+    top: 0; // Initial position
+    left: 0;
+
+    &:hover,
+    &:focus {
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); // Deeper shadow on hover and focus
+        background-color: darken(#d9d9d9, 10%); // Slightly darker background on hover and focus
+    }
+
+    &:active {
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); // Deepest shadow on click
+        background-color: darken(#d9d9d9, 20%); // Darkest background on click
+        top: 1px; // Move button down to simulate press
+        left: 1px;
+    }
+}
+
+.activeTab {
+    background-color: #e2e2e2;
+}
+
+.innerPage {
+    background-color: #f8f8f8;
+    border: 1px solid #e2e2e2;
+    padding: 10px;
+    min-height: calc(70vh - 35px);
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.activeTab~.innerPage {
+    background-color: #eaeaea;
+}
+
+
+@media screen and (max-width: 680px) {
+
+.informationBox svg {
+
+        display: none;
+    }
+
+        .tabContainer {
+            position: relative;
+        }
+
+                .tabContainer {
+                    display: block;
+                }
+}
+
+@media screen and (min-width: 780px) {}
+
+@media screen and (min-width: 880px) {}
+
+@media screen and (min-width: 1100px) {
+
+    .tabContainer {
+        top: 42%;
+        left: 2%;
+    }
+}

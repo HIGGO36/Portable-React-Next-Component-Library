@@ -1,0 +1,223 @@
+// GlobalCarousel.module.scss
+
+@keyframes swoosh {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+.carouselContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 280px;
+    max-width: 980px;
+    min-height: 350px;
+    height: 100%;
+    margin: 4% auto;
+    padding: 2% 4%;
+    border-radius: 20px;
+    border: 8px ridge #708090; // Glare with dark charcoal
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background-size: 200% auto;
+    transition: all 1s ease-in-out;
+    perspective: 1000px;
+    background-color: #BDCDE0; // Pearl light grey
+    overflow: hidden; // hide the overflowing swoosh
+    position: relative; // position context for the swoosh
+}
+
+.carouselContainer::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, transparent, purple, blue, white, transparent);
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.carouselContainer.isFlipping::after {
+    animation: swoosh 1s forwards;
+    opacity: 0.5;
+}
+
+.carousel-slide-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F2F2F2; // Very light grey white
+    min-width: 350px;
+    width: 84%;
+    min-height: 300px;
+    border: 2px inset #708090; // Inset 3d shaded border
+    border-radius: 20px;
+    margin: 1em auto;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    // transform: perspective(600px) rotateX(1.5deg);
+    position: relative;
+     transition: transform 1s;
+    overflow: hidden;
+
+        perspective: 1000px;
+            transform-style: preserve-3d;
+
+                &:hover,
+                    &:focus {
+                        transform: scale(0.98);
+                        box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.37);
+                    }
+                }
+
+    
+.carousel-slide-container.flipped {
+    transform: rotateY(180deg);
+}
+
+
+
+.front,
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; // for compatibility with Safari
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 2%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.front {
+    background-color: #F2F2F2; // Very light grey white
+    transform: rotateY(0deg);
+    z-index: 2;
+    font-weight: 600;
+    font-size: 1.25em;
+    line-height: 1.8;
+    color: #0A3D7E;
+    
+}
+
+.carousel-slide-container.flipped .front {
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.back {
+    background-color: #355882;
+    transform: rotateY(-180deg);
+    z-index: 1;
+    color: #DFE3E8;
+    font-weight: 600;
+    font-size: 1.25em;
+    line-height: 1.8;
+}
+
+.carousel-slide-container.flipped .back {
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+.flippable {
+    transform: rotateY(180deg);
+}
+
+
+    .controlButton {
+        background: white;
+        color: darkblue;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 20px;
+        transition: opacity 0.3s, border-color 0.3s;
+        display: inline;
+        margin: 4% auto;
+        width: 15%;
+        min-width: 160px;
+        border: 2px solid #0A305F;
+    
+        &:hover,
+        &:focus {
+            opacity: 0.7;
+            border-color: gold;
+        }
+    
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+    
+    .controlButtonContainer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+
+        .frontOne,
+        .reactIcon {
+            width: 39%;
+            margin: 0 auto;
+        }
+    
+        .reactIcon {
+            width: 30%;
+            float: right;
+    
+        }
+    
+        .frontTextTitle,
+        .backTextTitle {
+            float: left;
+            margin: 1%;
+            font-size: 1.3em;
+        }
+
+        
+    
+    @media (max-width: 800px),
+    (max-width: 500px),
+    (max-width: 400px) {
+
+        .carouselContainer {
+            width: 100%;
+            min-width: 200px;
+        }
+    
+        .carousel-slide-container {
+            min-width: 200px;
+            min-height: 200px;
+            text-align: center;
+        }
+    
+    
+    }
+
+@media (max-width: 660px){
+
+.controlButtonContainer {
+        flex-direction: column;
+    }
+          .controlButton {
+
+            margin: 3% auto;
+          }
+
+}
+
+          

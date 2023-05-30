@@ -1,0 +1,95 @@
+.footer {
+    width: 100%;
+    max-height: 150px;
+    background-color: #3A4A61;
+    border-radius: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        top: -6px;
+        bottom: -6px;
+        width: 20px;
+        background: linear-gradient(to top, #000, #d4af37, #000);
+        z-index: 1;
+    }
+
+    &::before {
+        left: -6px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    &::after {
+        right: -6px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        width: 97%;
+        /* Adjusted width for the scroll animation */
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(0);
+        /* Start with the element covering the icons */
+    }
+
+    &:hover::after,
+    &:focus::after,
+    &:active::after {
+        transform: translateX(calc(100% - 23px));
+        /* Slide the element to the right */
+    }
+
+    .socialIcons {
+        position: relative;
+        z-index: 2;
+        height: 65px;
+    }
+
+        .copyRight {
+            margin: 8px auto;
+            text-align: center;
+            }
+}
+
+
+.content {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyRight {
+    color: #d4af37;
+    font-size: 1.36em;
+    /* Increased the text size by 50%
+    text-align: center;
+        /* Centering the text */
+}
+
+.socialIcons {
+    display: flex;
+    align-items: center;
+    /* Added alignment to center the social icons vertically */
+
+    .icon {
+        color: #d4af37;
+        font-size: 3em;
+        /* Decreased the icon size by 25% */
+
+        @media screen and (max-width: 300px) {
+            font-size: 2em;
+            /* Decreased the icon size by 50% for screens with a maximum width of 300px or less */
+        }
+
+        margin: 2% auto;
+        transition: transform 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+            transform: scale(1.1);
+        }
+    }
+}

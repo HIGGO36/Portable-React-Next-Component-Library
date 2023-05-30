@@ -1,4 +1,4 @@
-# Interoperable Web Components with Next.js & MUI
+# Portable Web Components with Next.js & MUI
 
 This project demonstrates how to create and use React Next.js components, particularly when integrated with Material UI (MUI), as custom Web Components. This provides enhanced portability across various JavaScript frameworks. The project provides a comprehensive set of examples, showcasing best practices for creating and using these universal components.
 
@@ -10,7 +10,7 @@ To install the project, you will need to have Node.js and npm installed on your 
 
 1. Clone the repository: `git clone <repository-url>`
 2. Move into the project directory: `cd <project-directory>`
-3. Install the dependencies: `npm install`
+3. Install the dependencies: `npm install --legacy-peer-deps`
 
 ## Usage
 

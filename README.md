@@ -133,7 +133,7 @@ The `PremiumTemplate` component represents a premium template layout. It include
    In the above example, the PremiumTemplateWrapper is used to wrap your component, providing the necessary props for the PremiumTemplate. Customize the props according to your needs.
 
 # Contributing
-As this project is maintained solely by myself, it is currently not open to contributions. However, feel free to explore the codebase and use it as a reference for your own projects.
+As this project is maintained solely by myself, it is currently not open to contributions. However, feel free to explore the codebase and use it as a reference for your own projects!
 
 # License
 This project is open source and available under the MIT License.

@@ -2,7 +2,6 @@
   "private": true,
 
 "scripts": {
-    "preinstall": "npm install --legacy-peer-deps",
     "dev": "next",
     "build": "next build && node scripts/create-test-folder.js",
     "start": "next start",

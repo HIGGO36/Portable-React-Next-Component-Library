@@ -7,7 +7,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Link from "next/link";
 
 const aboutDropdownItems = ["Intro", "Components", "Installation", "Technology"];
-
 const GlobalHorizontalNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
@@ -15,18 +14,25 @@ const GlobalHorizontalNav = () => {
   const menuButtonRef = useRef(null);
   const dropdownItemsRefs = useRef<Array<React.RefObject<HTMLButtonElement>>>(aboutDropdownItems.map(() => React.createRef()));
 
-  useEffect(() => {
+
+
+useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768);
+
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
     };
 
-    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isMenuOpen]);
+
+
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -108,22 +114,31 @@ const GlobalHorizontalNav = () => {
         ) : null}
         <Typography variant="h6"></Typography>
         {isMobileView ? (
-          <Menu
-            anchorEl={menuButtonRef.current}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-            className="dropdown-menu"  >
-            {menuItems.map((item) => (
-              <MenuItem
-                key={item.path}
-                onClick={handleMenuClose}
-                component={Link}
-                href={item.path}
-              >
-                {item.label}
-              </MenuItem>
-            ))}
-          </Menu>
+<Menu
+  anchorEl={menuButtonRef.current}
+  open={isMenuOpen}
+  onClose={handleMenuClose}
+  className="dropdown-menu"
+  PaperProps={{
+    style: {
+      width: isMobileView ? '100%' : 'auto',
+    },
+  }}
+>
+  {menuItems.map((item) => (
+    <MenuItem
+      key={item.path}
+      onClick={handleMenuClose}
+      component={Link}
+      href={item.path}
+      style={{
+        width: isMobileView ? '100%' : 'auto',
+      }}
+    >
+      {item.label}
+    </MenuItem>
+  ))}
+</Menu>
         ) : (
           <>
             {menuItems.map((item) => (

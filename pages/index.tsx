@@ -38,8 +38,8 @@ const IndexPage = () => {
       component={
         <>
           <GlobalBillboard
-            heading="Portable Web Components with Next.js & MUI"
-            body="This project aims to demonstrate how React Next.js components, particularly when integrated with Material UI, can be wrapped as Custom Web Components to enhance portability across various JavaScript frameworks. It provides a comprehensive set of examples, showcasing best practices for creating and using these universal components, and offers a robust starting point for developers looking to leverage the power of React in diverse environments." />
+            heading="Portable Web Components with Next.js"
+            body="This project aims to demonstrate how React Next.js components can be wrapped as Custom Web Components to enhance portability across various JavaScript frameworks. It provides a comprehensive set of examples, showcasing best practices for creating and using these universal components, and offers a robust starting point for developers looking to leverage the power of React in diverse environments." />
            
     <GlobalArticle leftContent={leftContent} rightContent={rightContent} />
          

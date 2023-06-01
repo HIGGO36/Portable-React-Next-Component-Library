@@ -4,7 +4,6 @@
 "scripts": {
     "dev": "next",
     "build": "next build && node scripts/create-test-folder.js",
-    "install": "npm install --legacy-peer-deps",
     "start": "next start",
     "type-check": "tsc",
     "test": "jest",

@@ -13,29 +13,15 @@ const GlobalHorizontalNav = () => {
   const [isMobileView, setIsMobileView] = useState(false);
   const aboutRef = useRef(null);
   const menuButtonRef = useRef(null);
-  const dropdownItemsRefs = useRef<Array<React.RefObject<HTMLLIElement>>>([]);
+  const dropdownItemsRefs = useRef<Array<React.RefObject<HTMLButtonElement>>>(aboutDropdownItems.map(() => React.createRef()));
 
   useEffect(() => {
-    const style = document.createElement('style');
-
-    style.innerHTML = `
-      .global-horizontal-menu-button:hover,
-      .global-horizontal-menu-button:focus,
-      .global-horizontal-menu-button:active {
-        background-color: #AAA342;
-      }
-    `;
-
-    document.head.appendChild(style);
-
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
-
-    dropdownItemsRefs.current = aboutDropdownItems.map(() => React.createRef<HTMLLIElement>());
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -107,94 +93,99 @@ const GlobalHorizontalNav = () => {
   ];
 
   return (
-    <AppBar position="static"
-      style={{ backgroundColor: '#344A94' }}>
-      <Toolbar style={{ margin: '0 auto', height: '90px' }}>
-                {isMobileView ? (
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleMenuToggle}
-              ref={menuButtonRef} >
-              <MenuIcon />
-            </IconButton>
-          ) : null}
-          <Typography variant="h6"></Typography>
-          {isMobileView ? (
-            <Menu
-              anchorEl={menuButtonRef.current}
-              open={isMenuOpen}
-              onClose={handleMenuClose}
-             className="dropdown-menu"  >
-            
-              {menuItems.map((item) => (
-                <MenuItem
-                  key={item.path}
-                  onClick={handleMenuClose}
-                  component={Link}
+    <AppBar position="static" style={{ backgroundColor: '#344A94' }}>
+      <Toolbar style={{        margin: '0 auto', height: '90px' 
+      }}>
+        {isMobileView ? (
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleMenuToggle}
+            ref={menuButtonRef} >
+            <MenuIcon />
+          </IconButton>
+        ) : null}
+        <Typography variant="h6"></Typography>
+        {isMobileView ? (
+          <Menu
+            anchorEl={menuButtonRef.current}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+            className="dropdown-menu"  >
+            {menuItems.map((item) => (
+              <MenuItem
+                key={item.path}
+                onClick={handleMenuClose}
+                component={Link}
+                href={item.path}
+              >
+                {item.label}
+              </MenuItem>
+            ))}
+          </Menu>
+        ) : (
+          <>
+            {menuItems.map((item) => (
+              <div key={item.path}>
+                <Button
+                  style={{ padding: '10px 20px' }}
+                  className="global-horizontal-menu-button"
+                  color="inherit"
                   href={item.path}
+                  onMouseEnter={item.label === "About" ? handleAboutHover : undefined}
+                  onKeyDown={(event) => handleKeyDown(event, item, handleAboutHover)}
+                  ref={item.label === "About" ? aboutRef : null}
+                      sx={{
+              "&:hover, &:focus, &:active": {
+                backgroundColor: "#FEEAA7",
+                color: "#2E260F",
+              },
+            }}
                 >
-                  {item.label}
-                </MenuItem>
-              ))}
-            </Menu>
-          ) : (
-            <>
-              {menuItems.map((item) => (
-                <div key={item.path}>
-                  <Button
-                    style={{ padding: '10px 20px' }}
-                    className="global-horizontal-menu-button"
-                    color="inherit"
-                    href={item.path}
-                    onMouseEnter={item.label === "About" ? handleAboutHover : undefined}
-                    onKeyDown={(event) => handleKeyDown(event, item, handleAboutHover)}
-                    ref={item.label === "About" ? aboutRef : null}
+                  {item.label === "Profile" ? <AccountCircle /> : item.label}
+                </Button>
+                {item.dropdownItems && isMenuOpen && item.label === "About" && (
+                  <Menu
+                    style={{ margin: '0 auto' }}
+                    anchorEl={aboutRef.current}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "center",
+                    }}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "center",
+                    }}
+                    open={isMenuOpen}
+                    onClose={handleMenuClose}
+                    className="dropdown-menu"
                   >
-                    {item.label === "Profile" ? <AccountCircle /> : item.label}
-                  </Button>
-      {item.dropdownItems && isMenuOpen && item.label === "About" && (
-  <Menu
-    style={{ margin: '0 auto' }}
-    anchorEl={aboutRef.current}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
-    }}
-    open={isMenuOpen}
-    onClose={handleMenuClose}
-    className="dropdown-menu"
-  >
-    {item.dropdownItems.map((dropdownItem, index) => (
-      <li
-        key={dropdownItem}
-        ref={dropdownItemsRefs.current[index]}
-      >
-    <MenuItem
-                  onClick={handleMenuClose}
-                  onKeyDown={(event) => handleDropdownKeyDown(event, index)}
-                  component={Link}
-                  href={`/${dropdownItem.toLowerCase()}`} 
-                >
-          {dropdownItem}
-        </MenuItem>
-      </li>
-    ))}
-  </Menu>
-)}
-
-                </div>
-              ))}
-            </>
-          )}
-        </Toolbar>
-      </AppBar>
-    );
+                    {item.dropdownItems.map((dropdownItem, index) => (
+                      <MenuItem
+                        key={dropdownItem}
+                        component={Link}
+                        href={`/${dropdownItem.toLowerCase()}`} 
+                      >
+                        <button
+                          ref={dropdownItemsRefs.current[index]}
+                          onKeyDown={(event) => handleDropdownKeyDown(event, index)}
+                          onClick={handleMenuClose}
+                          style={{ all: 'unset', padding: '10px', cursor: 'pointer' }}
+                        >
+                          {dropdownItem}
+                        </button>
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                )}
+              </div>
+            ))}
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
+  );
 };
 
 export default GlobalHorizontalNav;

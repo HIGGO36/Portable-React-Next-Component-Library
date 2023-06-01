@@ -1,13 +1,9 @@
 import React from 'react';
-import PremiumTemplate from '../templates/PremiumTemplate';
-import GlobalHorizontalNavWrapper from './GlobalHorizontalNavWrapper';
-import GlobalRSNavWrapper from './GlobalRSNavWrapper';
-import GlobalLSNavWrapper from './GlobalLSNavWrapper';
+import PremiumTemplate from '.././templates/PremiumTemplate';
 
 interface PremiumTemplateWrapperProps {
   title?: string;
   customMetaTags?: React.ReactElement[];
-  customNavItems?: React.ReactElement[];
   bodyClassName?: string;
   component: React.ReactNode;
 }
@@ -16,7 +12,7 @@ const PremiumTemplateWrapper: React.FC<PremiumTemplateWrapperProps> = ({
   title,
   customMetaTags,
   bodyClassName,
-  component
+  component,
 }) => {
   return (
     <PremiumTemplate
@@ -24,13 +20,7 @@ const PremiumTemplateWrapper: React.FC<PremiumTemplateWrapperProps> = ({
       customMetaTags={customMetaTags}
       bodyClassName={bodyClassName}
       component={component}
-    >
-      <header>
-        <GlobalHorizontalNavWrapper />
-        <GlobalRSNavWrapper />
-        <GlobalLSNavWrapper/>
-      </header>
-    </PremiumTemplate>
+    />
   );
 };
 

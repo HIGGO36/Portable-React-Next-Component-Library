@@ -30,19 +30,15 @@ const PremiumTemplate: React.FC<PremiumTemplateProps> = ({
         <GlobalRSNav />
         <GlobalLSNav />
       </header>
-
       <div className="content">
         <div className="body-wrapper">
           <GlobalBody className={bodyClassName}>
             {component}
-
             <GlobalAccordion />
-               <GlobalAdCase />
-            
+               <GlobalAdCase /> 
           </GlobalBody>
         </div>
       </div>
-
       <footer>
         <GlobalFooter />
       </footer>

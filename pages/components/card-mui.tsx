@@ -2,31 +2,37 @@ import React from 'react';
 import DemoTemplate from '../../components/global/templates/DemoTemplate';
 import GlobalBillboard from '../../components/global/GlobalBillboard';
 import GlobalCardsMultiple from "../../components/global/GlobalCardsMultiple";
+import GlobalCard from '../../components/global/GlobalCard';
 import GlobalCodeCardsMultiple from "../../components/global/GlobalCodeCardsMultiple";
-import GlobalLSNav from '../../components/global/GlobalLSNav';
 import GlobalButtonLink from '../../components/global/GlobalButtonLink';
 
-const MenuLsMuiPage = () => {
-return (
+const CardMuiPage = () => {
+
+const cardTitle = 'The Card Component';
+const cardParagraph = 'This Card using Mui has alot to offer, More details coming soon...';
+const cardListItems = ['Details:', 'Structure:', 'Usage:'];
+    
+
+    return (
     <DemoTemplate
-      title="Global Left-Side Nav MUI"
+      title="Global Card"
       component={
         <>
         <GlobalBillboard
-        heading="Global Left-Side Nav MUI."
+        heading="a Card you cannot due without..."
 
-            body="details Coming Soon... " />
+            body="This Card can be used for single instances, there is also one that can be used for Unlimited amount of instances called the 'CardsMultiple'.  More details Coming Soon... " />
           
-          <GlobalLSNav />
+ <GlobalCard title={cardTitle} paragraph={cardParagraph} listItems={cardListItems} />
           
           <GlobalCardsMultiple
             count={1}
             cardProps={{
               title: "....Structure",
               paragraph:
-                "Components Details go here....",
+                "Components Details will go here....",
               listItems: [
-                "GlobalHead.tsx - 'included in 'FileNames.tsx",
+                "",
 
               ],
             }}
@@ -53,14 +59,14 @@ return (
             }}
           /> 
           
- <GlobalButtonLink href="/components/wrapper/menu-ls-mui-wrapper">
-Global Left-Side Nav MUI Wrapper
+ <GlobalButtonLink href="/components/wrapper/card-mui-wrapper">
+Card MUI Wrapper
 </GlobalButtonLink>
-
           
         </>
       }
     />
   );
 };
-export default MenuLsMuiPage;
+
+export default CardMuiPage;

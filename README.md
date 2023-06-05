@@ -1,8 +1,10 @@
-# Portable Web Components with Next.js & MUI
+# Portable Web Components with Next.js
 
-This project demonstrates how to create and use React Next.js components, particularly when integrated with Material UI (MUI), as custom Web Components. This provides enhanced portability across various JavaScript frameworks. The project provides a comprehensive set of examples, showcasing best practices for creating and using these universal components.
+This project demonstrates how to create and use React Next.js components with enhanced portability across various JavaScript frameworks. The project provides a comprehensive set of examples, showcasing best practices for creating and using these universal components.
 
 The main goal is to offer a robust starting point for developers looking to leverage the power of React in diverse environments. It also serves as a resource for uniquely styled free-to-use web components designed by myself.
+
+Web App Deployed on Vercel - https://portable-react-next-library-4bca8n9zi-higgo9339.vercel.app/ 
 
 ## Installation
 
